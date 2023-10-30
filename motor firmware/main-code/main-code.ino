@@ -1,6 +1,11 @@
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
 int ByteReceived;
+
+struct gameParameters {
+    uint8_t playerCount;
+    uint8_t angle;
+  };
 /*
  * main code lives here. MVP currently, deals to 4 people hardcoded. 
 */
@@ -18,7 +23,10 @@ void setup() {
     Serial.println("Could not find Motor Shield. Check wiring.");
     while (1);
   }
-  Serial.println("Motor Shield found.");  
+  Serial.println("Motor Shield found."); 
+  gameParameters state = {4, 200/4};  
+
+    
 
 
 
@@ -38,20 +46,31 @@ void loop() {
 
   //If ENTER was pressed on the serial command line
    if (ByteReceived == 10){
-      //Stepping & shooting out card
-  stepmotor -> step(25, FORWARD, SINGLE); // currently split rotation into 8 stops
-  delay(100);
-  dcmotor-> run(FORWARD);
-  delay(1000);
-  dcmotor-> run(RELEASE);
-  delay(1000);
+    //Stepping & shooting out card
+    
+    turn(stepmotor, 25); // currently split rotation into 8 stops
+    delay(100);
+    deal(dcmotor);
+
 
 
    }
     
    }
 
+}
 
 
+//Functions
 
+void deal(Adafruit_DCMotor *motor){
+    motor-> run(FORWARD);
+    delay(750);
+    motor-> run(RELEASE);
+    delay(100);
+}
+
+
+void turn (Adafruit_StepperMotor *motor, int degree){
+  motor -> step(degree, FORWARD, SINGLE);
 }
