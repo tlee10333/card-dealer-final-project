@@ -2,10 +2,9 @@
 #include <Adafruit_MotorShield.h>
 int ByteReceived;
 
-struct gameParameters {
-    uint8_t playerCount;
-    uint8_t angle;
-  };
+uint8_t playerCount =4;
+
+
 /*
  * main code lives here. MVP currently, deals to 4 people hardcoded. 
 */
@@ -64,6 +63,7 @@ void loop() {
 //Functions
 
 void deal(Adafruit_DCMotor *motor){
+
     motor-> run(FORWARD);
     delay(750);
     motor-> run(RELEASE);
@@ -71,6 +71,33 @@ void deal(Adafruit_DCMotor *motor){
 }
 
 
+
+
 void turn (Adafruit_StepperMotor *motor, int degree){
   motor -> step(degree, FORWARD, SINGLE);
+}
+
+
+
+
+void dealAll(Adafruit_DCMotor *DCmotor, Adafruit_StepperMotor *STEPmotor ){
+
+  //burn 1 card
+  deal(DCmotor);
+  delay(100);
+
+
+
+  //deal twice
+  for (int j = 0; j < 2; j++) {
+    
+      for (int i = 0; i< playerCount; i++){
+        turn(STEPmotor, (200/(playerCount +1)));
+        delay(100);
+        deal(motor);
+      }
+      //skip the burn pile
+      turn(STEPmotor, (200/(playerCount +1)));
+  }
+
 }
