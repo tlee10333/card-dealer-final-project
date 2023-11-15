@@ -20,6 +20,8 @@ void setup() {
 
 
   pinMode(SW1, INPUT_PULLUP); // Configure the button pin as input with pull-up resistor 
+
+
   
   Serial.begin(9600); // Initialize serial communication 
   while (!Serial); // Wait for Serial Monitor to open 
@@ -28,8 +30,7 @@ void setup() {
 
 } 
 
- 
- 
+
 
 void loop() { 
 
@@ -47,25 +48,18 @@ void loop() {
 
 
 bool debounceButtonPress(int buttonPin) { 
-
   uint32_t t = millis(); 
   bool SW1_high; 
-
   // Debounce solution - prevents microsecond double tapping 
   if (t >= debounce_time + DEBOUNCE_INTERVAL) { 
     SW1_high = digitalRead(buttonPin) == LOW; 
-    if (SW1_went_back_low && SW1_high) { 
-      
+    if (SW1_went_back_low && SW1_high) {  
       debounce_time = t; 
       SW1_went_back_low = false; 
-      return true; // Button press detected 
-      
+      return true; // Button press detected  
     } else if (!SW1_went_back_low && !SW1_high) { 
       SW1_went_back_low = true; 
     }
   } 
   return false; // Button press not detected 
 } 
-
-
- 
