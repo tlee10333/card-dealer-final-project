@@ -15,7 +15,7 @@ widget1:
 
 widget2:
   title: "Our Project"
-  url: '/product/'
+  url: '/project/'
   text: 'The Automatic Card Dealer is an innovative way to deal cards for card games without human error and maximum efficiency. Centered around human design and seamless integration into the environment, our product is intuitive to use.'
   video: '<a href="#" data-reveal-id="videoModal"><img src="http://phlow.github.io/feeling-responsive/images/start-video-feeling-responsive-302x182.jpg" width="302" height="182" alt=""/></a>'
 widget3:

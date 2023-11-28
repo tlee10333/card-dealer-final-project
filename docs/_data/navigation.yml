@@ -7,13 +7,13 @@
   side: left
 
 - title: "Our Project"
-  url: "/design/"
+  url: "/project/"
   side: left
   dropdown:
   - title: "The Product"
-    url: "/design/product/"
+    url: "/project/#the-product"
   - title: "Financial Breakdown"
-    url: "/design/financial/"
+    url: "/project/#financial-breakdown"
 
 
 - title: "System"
