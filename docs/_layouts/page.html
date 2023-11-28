@@ -3,12 +3,14 @@ layout: default
 format: post
 ---
 <div class="row t30">
-	<div class="medium-8 columns{% if page.sidebar == NULL %} medium-offset-2 end{% endif %}{% if page.sidebar == "left" %} medium-push-4{% endif %}">
+	<div class="medium-8 columns{% if page.sidebar == NULL %} medium-offset-2 end{% endif %}{% if page.sidebar == "
+		left" %} medium-push-4{% endif %}">
 		<article itemscope itemtype="http://schema.org/Article">
 			<header>
 				{% if page.image.title %}
 				<figure>
-					<img src="{{ site.urlimg }}{{ page.image.title }}" width="970" alt="{{ page.title | escape_once }}" itemprop="image">
+					<img src="{{ site.urlimg }}{{ page.image.title }}" width="970" alt="{{ page.title | escape_once }}"
+						itemprop="image">
 
 					{% if page.image.caption_url and page.image.caption %}
 					<figcaption class="text-right">
@@ -36,7 +38,7 @@ format: post
 			{% endif %}
 
 			<div itemprop="articleSection">
-			{{ content }}
+				{{ content }}
 			</div>
 
 			{% if page.show_meta == true %}
@@ -50,6 +52,23 @@ format: post
 	</div><!-- /.medium-8.columns -->
 
 
+
+
+	{% if page.callforaction.url contains 'http' %}
+	{% assign url = '' %}
+	{% else %}
+	{% capture url %}{{ site.url }}{{ site.baseurl }}{% endcapture %}
+	{% endif %}
+	{% if page.callforaction %}
+	<div class="row t60 b60">
+		<div class="small-12 text-center columns">
+			<a class="button large radius {{ page.callforaction.style }}" href="{{ url }}{{ page.callforaction.url }}"
+				{% if page.callforaction.url contains 'http' %} target="_blank" {% endif %}>{{ page.callforaction.text
+				}}</a>
+		</div><!-- /.small-12.columns -->
+	</div><!-- /.row -->
+	{% endif %}
+
 	{% if page.sidebar == "left" %}
 	<div class="medium-4 columns medium-pull-8">
 		{% include _sidebar.html %}
@@ -61,5 +80,25 @@ format: post
 	<div class="medium-4 columns">
 		{% include _sidebar.html %}
 	</div><!-- /.medium-4.columns -->
+	{% endif %}
+</div><!-- /.row -->
+
+
+{% comment %}
+*
+* First check, if widget is empty or not by checking if there is a title
+*
+{% endcomment %}
+<div class="row t20">
+	{% if page.widget1.image or page.widget1.video or page.widget1.title %}
+	{% include _subpage-widget.html widget=page.widget1 %}
+	{% endif %}
+
+	{% if page.widget2.image or page.widget2.video or page.widget2.title %}
+	{% include _subpage-widget.html widget=page.widget2 %}
+	{% endif %}
+
+	{% if page.widget3.image or page.widget3.video or page.widget3.title %}
+	{% include _subpage-widget.html widget=page.widget3 %}
 	{% endif %}
 </div><!-- /.row -->
