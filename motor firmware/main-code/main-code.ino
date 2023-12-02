@@ -2,6 +2,8 @@
 #include <Arduino.h> 
 
 #include <Adafruit_MotorShield.h>
+#include <LiquidCrystal_I2C.h>
+
 int ByteReceived;
 
 
@@ -14,6 +16,7 @@ int currentMode = 0; // current mode (initialize as 0)
 bool isSweepComplete = true; 
 int isUp = 1; 
 int player = 0;
+
 
 
 //Button to deal
@@ -35,6 +38,7 @@ int isUp2 = 1;
 Adafruit_MotorShield AFMS = Adafruit_MotorShield(); //Our motor shield
 Adafruit_DCMotor *dcmotor = AFMS.getMotor(2); //our DC motor on M#
 Adafruit_StepperMotor *stepmotor = AFMS.getStepper(200, 2); //Nema 17 datasheet says they have 200 steps/revolution. Next parameter is port #. m1 & m2 is port 1, m3 & m4 is port 2
+LiquidCrystal_I2C lcd(0x27, 16, 2); // LCD Screen woith I2C address 0x27, 16 column and 2 rows
 
 void setup() {
 
@@ -51,19 +55,20 @@ void setup() {
   pinMode(SW1, INPUT_PULLUP); // Configure the button pin as input with pull-up resistor. Button to add change player count
   pinMode(SW2, INPUT_PULLUP); // Configure the button pin as input with pull-up resistor Button to deal card. 
 
-
-
-    
-
+  //LCD
+  lcd.init(); // initialize the lcd
+  lcd.backlight();
 
 
   //Set speed for motors
   stepmotor -> setSpeed(20);  // 10 rpm   
-  dcmotor->setSpeed(30);
+  dcmotor->setSpeed(100);
 }
 
 //Superloop
 void loop() {
+
+
 
 
 //Rn too lazy to stick a button on a breadboard so using serial monitor as a button. Press enter to trigger a card getting dealt
@@ -75,7 +80,10 @@ void loop() {
    if (ByteReceived == 10 || debounceButtonPress2(SW2)){
     //Stepping & shooting out card
     
-    turn(stepmotor, 25); // currently split rotation into 8 stops
+
+    
+    
+    //turn(stepmotor, 180); // currently split rotation into 8 stops
     delay(100);
     deal(dcmotor);
    }
@@ -84,7 +92,34 @@ void loop() {
 
    if (debounceButtonPress1(SW1)) { 
     Serial.println("Button pressed."); 
-    add();
+    //add();
+    //stepmotor -> step(180, FORWARD, SINGLE);
+    deal(dcmotor);
+
+      //deal twice
+    
+        turn(stepmotor, 100);
+        delay(400);
+        deal(dcmotor);
+        delay(1000);
+      
+      //skip the burn pile
+      //turn(STEPmotor, 100);
+      delay(400);
+  
+
+
+
+    
+
+    //LCD Display
+    lcd.setCursor(0, 0);         
+    lcd.print("Button Pressed: Dealing");
+    lcd.setCursor(0, 1);         
+    lcd.print("Dealing");
+    delay(2000);
+    lcd.clear();                 // clear display
+
   } 
 
 }
@@ -98,7 +133,7 @@ void deal(Adafruit_DCMotor *motor){
     motor-> run(FORWARD);
     delay(750);
     motor-> run(RELEASE);
-    delay(100);
+    delay(300);
 }
 
 
@@ -117,21 +152,23 @@ void dealAll(Adafruit_DCMotor *DCmotor, Adafruit_StepperMotor *STEPmotor ){
     /* Deals to all player numbers*/
 
   //burn 1 card
-  deal(DCmotor);
+  //deal(DCmotor);
   delay(100);
 
 
 
   //deal twice
-  for (int j = 0; j < 2; j++) {
+  for (int j = 0; j < 5; j++) {
     
       for (int i = 0; i< player; i++){
-        turn(STEPmotor, (200/(player +1)));
-        delay(100);
+        //turn(STEPmotor, 100);
+        delay(400);
         deal(DCmotor);
+        delay(1000);
       }
       //skip the burn pile
-      turn(STEPmotor, (200/(player +1)));
+      //turn(STEPmotor, 100);
+      delay(400);
   }
 
 }

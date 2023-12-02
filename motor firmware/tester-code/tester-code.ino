@@ -8,7 +8,7 @@ ports that the motors are connected to. Tester code will run stepper & dc motor 
 
 //Initializing all our objects
 Adafruit_MotorShield AFMS = Adafruit_MotorShield(); //Our motor shield
-Adafruit_DCMotor *dcmotor = AFMS.getMotor(1); //our DC motor on M#
+Adafruit_DCMotor *dcmotor = AFMS.getMotor(2); //our DC motor on M#
 Adafruit_StepperMotor *stepmotor = AFMS.getStepper(200, 2); //Nema 17 datasheet says they have 200 steps/revolution. Next parameter is port #. m1 & m2 is port 1, m3 & m4 is port 2
 
 void setup() {
