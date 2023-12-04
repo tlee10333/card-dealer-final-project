@@ -16,17 +16,6 @@ int ByteReceived;
 #define GEARING     1.75  // 4.1 for speed 50, 1.45 for speed 100; 1.75
 #define ENCODERMULT 48
 
-
-//Everything for Adding Player Count
-const int SW1 = 4; // Replace with the actual pin number for your button 
-const unsigned long DEBOUNCE_INTERVAL = 50; // Adjust debounce interval as needed 
-uint32_t debounce_time = 0; 
-bool SW1_went_back_low = false; 
-int currentMode = 0; // current mode (initialize as 0) 
-bool isSweepComplete = true; 
-int isUp = 1; 
-int player = 0;
-
 //Encoder Data for card shooter
 float wheel_diam = 2.5;   //inches
 float card_length = 3.5;  //inches
@@ -34,13 +23,33 @@ float revs = card_length/wheel_diam;
 volatile unsigned long count = 0;
 
 
-//Button to deal
-const int SW2 = 3; // Replace with the actual pin number for your button 
+int player = 4;
+
+//Everything for Dealing
+const int SW1 = 4; //Pin Number for Dealing button
+const unsigned long DEBOUNCE_INTERVAL = 100; // Adjust debounce interval as needed 
+uint32_t debounce_time = 0; 
+bool SW1_went_back_low = false; 
+int currentMode = 0; // current mode (initialize as 0) 
+bool isSweepComplete = true; 
+int isUp = 1; 
+
+
+//Adding Player Count
+const int SW2 = 5; // Replace with the actual pin number for your button 
 uint32_t debounce_time2 = 0; 
 bool SW2_went_back_low = false; 
 int currentMode2 = 0; // current mode (initialize as 0) 
 bool isSweepComplete2 = true; 
 int isUp2 = 1; 
+
+//Decreasing Player Count
+const int SW3 = 6; // Replace with the actual pin number for your button 
+uint32_t debounce_time3 = 0; 
+bool SW3_went_back_low = false; 
+int currentMode3 = 0; // current mode (initialize as 0) 
+bool isSweepComplete3 = true; 
+int isUp3 = 1; 
 
 
 
@@ -90,6 +99,15 @@ void setup() {
 //Superloop
 void loop() {
 
+  //Calculate total number of players
+  
+
+  lcd.setCursor(0, 0);         
+  lcd.print("Auto Dealer");
+  lcd.setCursor(0, 1);
+  String playerText = "Player Count: ";
+  lcd.print(playerText += player);
+
 
 
 
@@ -97,39 +115,78 @@ void loop() {
    if (Serial.available() > 0)
  {
    ByteReceived = Serial.read();
-   
    }
+
+
+
+   
    //To deal Cards
    if (ByteReceived == 10 || debounceButtonPress1(SW1)) { 
-    Serial.println("Button pressed."); 
-    //add();
-    //stepmotor -> step(180, FORWARD, SINGLE);
-    deal(dcmotor);
-
-      //deal twice
-    
-        turn(stepmotor, 100);
-        delay(400);
-        deal(dcmotor);
-        delay(1000);
-      
-      //skip the burn pile
-      //turn(STEPmotor, 100);
-      delay(400);
-  
-
-
-
 
     //LCD Display
+    lcd.clear();                 // clear display
     lcd.setCursor(0, 0);         
-    lcd.print("Button Pressed: Dealing");
+    lcd.print("Button Pressed:");
     lcd.setCursor(0, 1);         
-    lcd.print("Dealing");
+    lcd.print("Dealing Hands");
+    
+    Serial.println("Button pressed."); 
+    int degree = 360/(player+1);
+
+
+    //BURN PILE
+    deal(dcmotor);
+
+
+    //deal everyone 2 cards
+
+    //Deal one card to each player
+
+  int totalTurns = player+1;
+
+     for (int i = 1; i < totalTurns; ++i){
+      turn(stepmotor, degree);
+      delay(400);
+      deal(dcmotor);
+      delay(400);
+     }
+    turn(stepmotor, degree);
+
+    for (int i = 1; i < totalTurns; ++i){
+      turn(stepmotor, degree);
+      delay(400);
+      deal(dcmotor);
+      delay(400);
+     }
+
+  
+
+    lcd.clear();                 // clear display
+    lcd.setCursor(0, 0);         
+    lcd.print("Finished Dealing:");
+    lcd.setCursor(0, 1);         
+    lcd.print("Take Your Hands");
     delay(2000);
     lcd.clear();                 // clear display
 
-  } 
+    
+
+  }
+
+
+  //Adding Players
+  if (debounceButtonPress2(SW2)) { 
+    add();
+    
+      
+    }
+
+
+  if (debounceButtonPress3(SW3)) { 
+    minus();
+    
+      
+    }
 
 }
 
@@ -155,7 +212,7 @@ void deal(Adafruit_DCMotor *motor){
 void turn (Adafruit_StepperMotor *motor, int degree){
 
     /* Turns dealer once*/
-  motor -> step(degree, FORWARD, SINGLE);
+  motor -> step(degree * 4, BACKWARD, SINGLE);
 }
 
 
@@ -164,10 +221,22 @@ void turn (Adafruit_StepperMotor *motor, int degree){
 void add(){
     /*Increases player count. If Current ceiling for players is 8 */
   if (player == 8){
-    player = 4;
+    player = 8;
   }
   else {
     player+=1;
+  }
+}
+
+
+
+void minus(){
+    /*decreases player count.  Current floor for players is 4 */
+  if (player == 4){
+    player = 4;
+  }
+  else {
+    player-=1;
   }
 }
 
@@ -193,17 +262,36 @@ bool debounceButtonPress1(int buttonPin) {
 
 bool debounceButtonPress2(int buttonPin) { 
     /*Function to debounce pins */
-  uint32_t t = millis(); 
+  uint32_t t2 = millis(); 
   bool SW2_high; 
   // Debounce solution - prevents microsecond double tapping 
-  if (t >= debounce_time2 + DEBOUNCE_INTERVAL) { 
+  if (t2 >= debounce_time2 + DEBOUNCE_INTERVAL) { 
     SW2_high = digitalRead(buttonPin) == LOW; 
     if (SW2_went_back_low && SW2_high) {  
-      debounce_time2 = t; 
+      debounce_time2 = t2; 
       SW2_went_back_low = false; 
       return true; // Button press detected  
     } else if (!SW2_went_back_low && !SW2_high) { 
       SW2_went_back_low = true; 
+    }
+  } 
+  return false; // Button press not detected 
+}
+
+
+bool debounceButtonPress3(int buttonPin) { 
+    /*Function to debounce pins */
+  uint32_t t3 = millis(); 
+  bool SW3_high; 
+  // Debounce solution - prevents microsecond double tapping 
+  if (t3 >= debounce_time3 + DEBOUNCE_INTERVAL) { 
+    SW3_high = digitalRead(buttonPin) == LOW; 
+    if (SW3_went_back_low && SW3_high) {  
+      debounce_time3 = t3; 
+      SW3_went_back_low = false; 
+      return true; // Button press detected  
+    } else if (!SW3_went_back_low && !SW3_high) { 
+      SW3_went_back_low = true; 
     }
   } 
   return false; // Button press not detected 
