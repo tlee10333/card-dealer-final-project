@@ -7,7 +7,7 @@
 #define ENCODER_B   3
 
 // These let us convert ticks-to-RPM
-#define GEARING     1.75  // 4.1 for speed 50, 1.45 for speed 100; 1.75
+#define GEARING    0.8 // 4.1 for speed 50, 1.45 for speed 100; 1.75
 #define ENCODERMULT 48
 
 // Create the motor shield object with the default I2C address
@@ -35,7 +35,7 @@ void setup() {
   }
   Serial.println("Motor Shield found.");  Serial.println("Begun");
   // turn on motor M1
-  dcmotor->setSpeed(100);
+  dcmotor->setSpeed(185);
   delay(50);
 }
 
@@ -75,12 +75,13 @@ void deal(Adafruit_DCMotor *motor){
   while (count < revs * GEARING * ENCODERMULT) {
     motor-> run(BACKWARD);
     Serial.println(count);
-    delay(5);
+    delay(25);
   }
   motor-> run(RELEASE);
-  delay(1000);
+  delay(700);
   motor-> run(FORWARD);
-  delay(1000);
+  delay(700);
   motor-> run(RELEASE);
+  count = 0;
 }
 
