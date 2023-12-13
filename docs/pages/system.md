@@ -2,7 +2,7 @@
 layout: page-fullwidth
 subheadline: "Engineering Systems"
 title: "Our Team's Engineering Divisions"
-teaser: "Our interdisciplinary project utilizes Mechanical, Electrical, and Software engineering components. You can learn about each system and how it was designed throughout the project here."
+teaser: "Our interdisciplinary project utilizes Mechanical, Electrical, and Software/Firmware engineering components. You can learn about each system and how it was designed throughout the project here."
 permalink: "/system/"
 
 widget1:
