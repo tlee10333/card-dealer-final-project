@@ -30,7 +30,7 @@ void setup() {
 //Superloop
 void loop() {
   stepmotor -> step(100, FORWARD, SINGLE); 
-  dcmotor-> run(FORWARD);
+  //dcmotor-> run(FORWARD);
   delay(1000);
 
 

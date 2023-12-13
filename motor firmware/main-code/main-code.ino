@@ -13,8 +13,9 @@ int ByteReceived;
 #define ENCODER_B   3
 
 // These let us convert ticks-to-RPM
-#define GEARING     1.75  // 4.1 for speed 50, 1.45 for speed 100; 1.75
+#define GEARING    0.8 // 4.1 for speed 50, 1.45 for speed 100; 1.75
 #define ENCODERMULT 48
+
 
 //Encoder Data for card shooter
 float wheel_diam = 2.5;   //inches
@@ -85,8 +86,8 @@ void setup() {
 
 
   //Set speed for motors
-  stepmotor -> setSpeed(100);  // 10 rpm   
-  dcmotor->setSpeed(100);
+  stepmotor -> setSpeed(90);  // 10 rpm   
+  dcmotor->setSpeed(185);
 
   //Encoder Setup
   pinMode(ENCODER_B, INPUT_PULLUP);
@@ -142,8 +143,9 @@ void loop() {
 
     //Deal one card to each player
 
-  int totalTurns = player+1;
+    //Nested for loops break this for some bizarre reason......
 
+  int totalTurns = player+1;
      for (int i = 1; i < totalTurns; ++i){
       turn(stepmotor, degree);
       delay(400);
@@ -159,8 +161,7 @@ void loop() {
       delay(400);
      }
 
-  
-
+ 
     lcd.clear();                 // clear display
     lcd.setCursor(0, 0);         
     lcd.print("Finished Dealing:");
@@ -197,13 +198,14 @@ void deal(Adafruit_DCMotor *motor){
   while (count < revs * GEARING * ENCODERMULT) {
     motor-> run(BACKWARD);
     Serial.println(count);
-    delay(5);
+    delay(25);
   }
   motor-> run(RELEASE);
-  delay(1000);
+  delay(700);
   motor-> run(FORWARD);
-  delay(1000);
+  delay(700);
   motor-> run(RELEASE);
+  count = 0;
 }
 
 
