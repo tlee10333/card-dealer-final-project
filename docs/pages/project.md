@@ -6,7 +6,7 @@ teaser: "idk."
 permalink: "/project/"
 
 image:
-   thumb: "gallery-example-1-thumb.jpg"
+   thumb: "gallery-example-1.jpg"
 gallery:
     - image_url: gallery-example-1.jpg
       caption: Great images by Unsplash.com
