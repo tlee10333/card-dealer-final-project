@@ -12,7 +12,7 @@ header:
 
 <div class="row t60">
     <div class="medium-6 columns b30">
-        <img src="{{ site.urlimg }}gallery-example-1.jpg" alt="">
+        <img src="{{ site.urlimg }}mo.jpg" alt="">
     </div><!-- /.medium-6.columns -->
 
     <div class="medium-6 columns b30">
@@ -25,7 +25,7 @@ header:
 
 <div class="row t60">
     <div class="medium-6 columns b30">
-        <img src="{{ site.urlimg }}gallery-example-1.jpg" alt="">
+        <img src="{{ site.urlimg }}almost_straight.jpg" alt="">
     </div><!-- /.medium-6.columns -->
 
     <div class="medium-6 columns b30">

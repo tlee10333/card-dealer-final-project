@@ -38,7 +38,7 @@ improve_content: https://github.com/Phlow/feeling-responsive/edit/gh-pages
 # Example: <img src="{{ site.urlimg }}{{ post.image.title }}" />
 # Markdown-Example for posts ![Image Text]({{ site.urlimg }}image.jpg)
 #
-urlimg: 'https://phlow.github.io/feeling-responsive/images/'
+urlimg: https://tlee10333.github.io/card-dealer-final-project/images
 
 
 # Logo size is 600x80 pixels
@@ -112,7 +112,7 @@ defaults:
       show_meta: false 	# Hide metadata for all pages
       # sidebar:    		# Possible values › left, right › by default there will be no sidebar
       comments: false
-      author: phlow     # Default author for pages
+      author: trinity     # Default author for pages
   -
     scope:
       path: ''
@@ -121,7 +121,7 @@ defaults:
       show_meta: true   # Show metadata for all posts
       # sidebar:        # Possible values › left, right › by default there will be no sidebar
       comments: false
-      author: phlow     # Default author for posts
+      author: trinity     # Default author for posts
 
 
 
