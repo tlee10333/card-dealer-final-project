@@ -1,31 +1,33 @@
 ---
 layout: page
-subheadline:  "Templates"
+subheadline:  "Integrated Principles of Engineering"
 title:  "Our Project"
-teaser: "idk."
+teaser: "An automatic card dealer integrated into a table with  modular number of players"
 permalink: "/project/"
 
+
+
+
 image:
-   thumb: "gallery-example-1.jpg"
+   thumb: cadassembly-thumb.jpg
 gallery:
-    - image_url: gallery-example-1.jpg
+    - image_url: cadassembly.jpg
+      caption: Our final product
+    - image_url: product_image_2.jpg
       caption: Great images by Unsplash.com
-    - image_url: gallery-example-2.jpg
+    - image_url: product_image_3.jpg
       caption: Great images by Unsplash.com
-    - image_url: gallery-example-3.jpg
+    - image_url: real_dealer1.jpg
       caption: Great images by Unsplash.com
-    - image_url: gallery-example-4.jpg
+    - image_url: real_dealer2.jpg
       caption: Great images by Unsplash.com
-    - image_url: gallery-example-5.jpg
+    - image_url: caddealer.jpg  
       caption: Great images by Unsplash.com
-    - image_url: gallery-example-6.jpg
+    - image_url: caddealershroud.jpg
       caption: Great images by Unsplash.com
-    - image_url: gallery-example-7.jpg
-      caption: Great images by Unsplash.com
-    - image_url: gallery-example-8.jpg
+    - image_url: internal_gear.jpg
       caption: Great images by Unsplash.com
 ---
-You just need to choose a template like the [`page`][3]- or [`page-fullwidth`][4]-template and then just use `{% raw %}{% include gallery %}{% endraw %}`.
 <!--more-->
 
 {% include gallery %}
@@ -47,6 +49,9 @@ Here is our Bill of Materials (BoM) and associated datasheets.
 
 Overall, this project had a total budget of $250, out of which a substantial portion of our materials were gathered for free. 
 
+<div class="row">
+        <img src="{{ site.urlimg }}bom.jpg" alt="">
+  </div><!-- /.row -->
 
 
 
