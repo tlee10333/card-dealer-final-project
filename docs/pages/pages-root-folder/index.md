@@ -6,7 +6,7 @@ header:
 widget1:
   title: "About Us"
   url: '/about/'
-  image: almost_straight4.jpg
+  image: almost_straight2.jpg
   text: 'Our team is made up of four engineers from a diverse set of backgrounds to develop a product that is the intersection between mechanical, electrical, and software engineering.'
 
 widget2:

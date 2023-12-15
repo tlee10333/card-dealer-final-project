@@ -5,7 +5,7 @@ subheadline: "About"
 teaser: "Our engineering team, Almost Straight, is a combination of mechanical, electrical, and software engineers who have come together to build an automatic card dealer"
 permalink: "/about/"
 header:
-    image_fullwidth: "placeholder.jpg"
+    image_fullwidth: "almost_straight4.jpg"
 ---
 
 ## Mo Ampane

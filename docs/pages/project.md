@@ -12,21 +12,21 @@ image:
    thumb: cadassembly-thumb.jpg
 gallery:
     - image_url: cadassembly.jpg
-      caption: Our final product
+      caption: The finished CAD of our card dealer with turning gear(not integrated into table)
     - image_url: product_image_2.jpg
-      caption: Great images by Unsplash.com
+      caption: Finished table and integrated card dealer being used by team members
     - image_url: product_image_3.jpg
-      caption: Great images by Unsplash.com
+      caption: Our integrated card dealer in action
     - image_url: real_dealer1.jpg
-      caption: Great images by Unsplash.com
+      caption: Close up of automatic card dealer (sans shroud) with cards
     - image_url: real_dealer2.jpg
-      caption: Great images by Unsplash.com
+      caption: Close up of automatic card dealer (sans shroud) without cards
     - image_url: caddealer.jpg  
-      caption: Great images by Unsplash.com
+      caption: CAD image of just the card dealing mechanism 
     - image_url: caddealershroud.jpg
-      caption: Great images by Unsplash.com
+      caption: CAD image of card dealing mechanism with shroud
     - image_url: internal_gear.jpg
-      caption: Great images by Unsplash.com
+      caption: Top view of turning gear mechanism setup
 ---
 <!--more-->
 
@@ -42,6 +42,10 @@ In brainstorming what we wanted to do, we eventually settled on a product that w
 It not only would help streamline the games, but would be a product that could be replicable, sleek, and easy to use. We iterated through many designs and worked with integration into the center of a proper poker table, and eventually settled on a final, portable, singular card table and automatic dealer.
 
 So we present to you: our automatic poker dealer. Set into a low, felt-covered table, the dealer shoots cards out onto a hardboard wooden inset that every player can reach. An LCD screen inset into the table allows for the amount of players to be modified - anywhere from four to eight players - and once the deal button is pressed, the deck will automatically deal out two cards to the set amount of players and create a burn pile as a typical dealer would. The deck of cards can easily be removed, shuffled, and reinserted into the dealer, and the sleek design of the cover allows the dealer to fit naturally within the rest of the table. The dealer allows for smooth, uninterrupted play, and serves as a complex mechanical, electrical, and software engineering project that is replicable and provides a value in play.
+
+<div class="row">
+        <img src="{{ site.urlimg }}product_image_1.jpg" alt="">
+</div><!-- /.row -->
 
 ## Financial Breakdown
 
