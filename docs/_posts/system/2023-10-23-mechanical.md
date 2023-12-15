@@ -50,8 +50,6 @@ Cards are put into the card holder, then the weight is placed on top of them. Th
     </div><!-- /.medium-6.columns -->
 </div><!-- /.row -->
 
-[video of placing the cards in the card holder?]
-
 
 <div class="row t60">
     <div class="medium-6 columns b30">
