@@ -2,7 +2,7 @@
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
 
-const int SW1 = 2; // Replace with the actual pin number for your button 
+const int SW1 =5; // Replace with the actual pin number for your button 
 const unsigned long DEBOUNCE_INTERVAL = 50; // Adjust debounce interval as needed 
 uint32_t debounce_time = 0; 
 bool SW1_went_back_low = false; 

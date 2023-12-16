@@ -86,7 +86,7 @@ void setup() {
 
 
   //Set speed for motors
-  stepmotor -> setSpeed(90);  // 10 rpm   
+  stepmotor -> setSpeed(120);  // 10 rpm   
   dcmotor->setSpeed(185);
 
   //Encoder Setup
@@ -132,11 +132,8 @@ void loop() {
     lcd.print("Dealing Hands");
     
     Serial.println("Button pressed."); 
-    int degree = 360/(player+1);
+    int degree = 360/(player);
 
-
-    //BURN PILE
-    deal(dcmotor);
 
 
     //deal everyone 2 cards
@@ -145,7 +142,7 @@ void loop() {
 
     //Nested for loops break this for some bizarre reason......
 
-  int totalTurns = player+1;
+  int totalTurns = player;
      for (int i = 1; i < totalTurns; ++i){
       turn(stepmotor, degree);
       delay(400);
