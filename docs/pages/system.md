@@ -28,10 +28,12 @@ widget3:
 
 ---
 # System Overview 
+<center>
 <div class="row">
         <img src="{{ site.urlimg }}schematic.jpg" alt="">
-        <p>This is a block diagram of the entire system overview encompassing the major different components of the mechanical, electrical, and firmware systems. To learn about the the specifics of each system, click on the different systems below!</p> 
+        <p><i>This is a block diagram of the entire system overview encompassing the major different components of the mechanical, electrical, and firmware systems.</i></p> 
 </div><!-- /.row -->
+</center>
 
-
+Overall, our automatic dealer centers around a DC motor which is used to deal cards, and a stepper motor which turns the DC motor around so that it can deal to multiple people. We use buttons which trigger the motors in the firmware, and everything in cleanly integrated into a table. For more information on the specifics, look at the different systems below!
 

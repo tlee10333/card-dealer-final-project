@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page-fullwidth
 title: "Mechanical System Overview"
 subheadline: "Overview"
 teaser: "An overview of the Mechanical System of the Automatic Card Dealer. The mechanical structure is composed of three main parts: the card dealer, the pan mechanism that rotates the card dealer, and the table."

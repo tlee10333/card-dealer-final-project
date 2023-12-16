@@ -54,7 +54,7 @@ So we present to you: our automatic poker dealer. Set into a low, felt-covered t
 
 <i>Below is a brief gallery of our product. </i></center>
 
-
+<br/>
 
 {% include gallery %}
 
