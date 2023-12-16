@@ -36,6 +36,7 @@ bool isSweepComplete = true;
 int isUp = 1; 
 
 
+//PRoblem child
 //Adding Player Count
 const int SW2 = 5; // Replace with the actual pin number for your button 
 uint32_t debounce_time2 = 0; 
@@ -43,6 +44,8 @@ bool SW2_went_back_low = false;
 int currentMode2 = 0; // current mode (initialize as 0) 
 bool isSweepComplete2 = true; 
 int isUp2 = 1; 
+
+
 
 //Decreasing Player Count
 const int SW3 = 6; // Replace with the actual pin number for your button 
@@ -132,11 +135,10 @@ void loop() {
     lcd.print("Dealing Hands");
     
     Serial.println("Button pressed."); 
-    int degree = 360/(player+1);
+    int degree = 360/(player);
 
 
     //BURN PILE
-    deal(dcmotor);
 
 
     //deal everyone 2 cards
@@ -145,21 +147,15 @@ void loop() {
 
     //Nested for loops break this for some bizarre reason......
 
-  int totalTurns = player+1;
-     for (int i = 1; i < totalTurns; ++i){
-      turn(stepmotor, degree);
-      delay(400);
+  int totalTurns = player*2;
+     for (int i = 1; i <= totalTurns; ++i){
       deal(dcmotor);
       delay(400);
+      turn(stepmotor, degree);
+      delay(400);
      }
-    turn(stepmotor, degree);
 
-    for (int i = 1; i < totalTurns; ++i){
-      turn(stepmotor, degree);
-      delay(400);
-      deal(dcmotor);
-      delay(400);
-     }
+     turn(stepmotor, degree);
 
  
     lcd.clear();                 // clear display
@@ -167,13 +163,13 @@ void loop() {
     lcd.print("Finished Dealing:");
     lcd.setCursor(0, 1);         
     lcd.print("Take Your Hands");
-    delay(2000);
+    delay(1000);
     lcd.clear();                 // clear display
 
     
 
   }
-
+  
 
   //Adding Players
   if (debounceButtonPress2(SW2)) { 
@@ -214,7 +210,7 @@ void deal(Adafruit_DCMotor *motor){
 void turn (Adafruit_StepperMotor *motor, int degree){
 
     /* Turns dealer once*/
-  motor -> step(degree * 4, BACKWARD, SINGLE);
+  motor -> step(degree * 3.56, BACKWARD, SINGLE);
 }
 
 
