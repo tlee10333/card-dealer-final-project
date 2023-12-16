@@ -60,7 +60,7 @@ Cards are put into the card holder, then the weight is placed on top of them. Th
         <p>To increase the aesthetic appeal of the system a shroud was placed on the card dealer to cover the pan mechanism, wiring, and electronics. It also holds the LCD, player count buttons, and deal button to make them more accessible for users.</p>
     </div><!-- /.medium-6.columns -->
 </div><!-- /.row -->
-<center>
+</center>
 
 
 ## Pan Mechanism
