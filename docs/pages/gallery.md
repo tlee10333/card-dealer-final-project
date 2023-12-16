@@ -20,7 +20,7 @@ gallery:
     - image_url: dealer_side2.jpg
       caption: Picture of the card dealer with panning mechanism (before shroud)
     - image_url: IMG_5724.jpg
-      caption: Picutre of the card dealer fully integrated with the central column
+      caption: Picture of the card dealer fully integrated with the central column
     - image_url: isometric_pan_cad.jpg
       caption: CAD image of the elgonated support legs and panning mechanism
     - image_url: just_shooter.jpg
