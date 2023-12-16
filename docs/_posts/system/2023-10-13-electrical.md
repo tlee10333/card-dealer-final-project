@@ -14,5 +14,5 @@ header:
 ---
 <!--more-->
 
-words
+At the core of our electrical system, we use an `Arduino Uno` and an `Adafruit Motor Shield v2` to drive all hardware and firmware. 
 
