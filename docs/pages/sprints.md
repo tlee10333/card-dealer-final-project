@@ -5,7 +5,7 @@ title               : "Our Project Progress"
 subheadline         : "Sprints"
 teaser              : "During the development cycle of the automatic card dealer, our team chose to use an Agile Scrum framework to stay organized and keep track of all the different components needed for our project. Over the course of two to three months, our team went through three sprints total, with each sprint culminating into a design review and retrospective at the end. During each sprint we looked at the status of our Backlog and set concrete goals on what we wanted to achieve at the end of the sprint. Below are the different sprints and progress during each one."
 header:
-   image_fullwidth  : "header_roadmap_3.jpg"
+   image_fullwidth  : "scratchwork.jpg"
 permalink           : "/sprints/"
 
 
